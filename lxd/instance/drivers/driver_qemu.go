@@ -1441,6 +1441,7 @@ func (d *qemu) start(stateful bool, op *operationlock.InstanceOperation) error {
 		if d.state.OS.KernelVersion.Compare(minVer) >= 0 && shared.IsFalseOrEmpty(d.expandedConfig["migration.stateful"]) {
 			// x86_64 can use hv_time to improve Windows guest performance.
 			// cpuExtensions = append(cpuExtensions, "hv_passthrough")
+			cpuExtensions = append(cpuExtensions, "+avx2")
 		}
 
 		// x86_64 requires the use of topoext when SMT is used.
